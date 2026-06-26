@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WILLTEC TOKUTEI PLATFORM｜MVP画面フロー資料</title>
+<style>
+:root{--blue:#075ee8;--navy:#07183b;--muted:#60708c;--line:#dce5f5;--bg:#f5f8ff;--card:#fff;--orange:#ff7a00;}
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans JP','Yu Gothic',Meiryo,sans-serif;background:linear-gradient(180deg,#f8fbff,#eef4ff);color:var(--navy);}
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.86);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);}
+.top{display:flex;align-items:center;gap:22px;max-width:1500px;margin:auto;padding:14px 24px;}
+.logo{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.02em}.logo .mark{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,#0069ff,#003bb7);color:white;display:grid;place-items:center;font-weight:900;font-size:24px}.logo small{display:block;font-size:11px;color:var(--muted);letter-spacing:.08em}
+.top nav{display:flex;gap:16px;flex-wrap:wrap;margin-left:auto}.top nav a{color:#09183a;text-decoration:none;font-weight:800;font-size:14px;padding:9px 12px;border-radius:999px}.top nav a:hover{background:#edf4ff;color:var(--blue)}
+.hero{max-width:1500px;margin:0 auto;padding:32px 24px 24px;}
+.hero-card{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;padding:34px;border:1px solid var(--line);border-radius:28px;background:linear-gradient(135deg,#fff,#eef6ff 62%,#fff4e7);box-shadow:0 18px 50px rgba(7,39,92,.08)}
+h1{font-size:40px;line-height:1.25;margin:8px 0 16px;letter-spacing:-.02em}.lead{font-size:17px;line-height:1.8;color:#445675;margin:0 0 20px}.badge{display:inline-flex;color:var(--blue);font-weight:900;background:#eaf3ff;border:1px solid #cde0ff;border-radius:999px;padding:8px 14px}
+.flowline{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}.flowline a{flex:1;min-width:130px;text-align:center;background:#fff;border:1px solid var(--line);padding:14px 10px;border-radius:16px;text-decoration:none;color:var(--navy);font-weight:900;box-shadow:0 8px 20px rgba(7,39,92,.04)}.flowline a:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-1px)}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.stat{background:rgba(255,255,255,.86);border:1px solid var(--line);border-radius:18px;padding:22px}.stat strong{display:block;font-size:34px;color:var(--navy)}.stat span{font-weight:800;color:#51627f}
+.layout{display:grid;grid-template-columns:260px 1fr;gap:24px;max-width:1500px;margin:0 auto;padding:0 24px 60px}aside{position:sticky;top:78px;align-self:start;background:white;border:1px solid var(--line);border-radius:22px;padding:18px;max-height:calc(100vh - 100px);overflow:auto}aside h3{margin:0 0 12px}aside a{display:block;text-decoration:none;color:#30415f;font-weight:800;padding:10px 12px;border-radius:12px}aside a:hover{background:#eef5ff;color:var(--blue)}
+.quick{display:grid;gap:6px;margin-top:16px}.quick button{text-align:left;border:1px solid transparent;background:transparent;color:#33445f;border-radius:10px;padding:8px 10px;cursor:pointer;font-weight:700}.quick button:hover{background:#f1f6ff;color:var(--blue)}.quick b{color:var(--blue);margin-right:6px}
+.section{margin-bottom:34px;scroll-margin-top:92px}.section h2{font-size:28px;margin:0 0 16px;padding:22px 4px 0}.grid{display:grid;grid-template-columns:1fr;gap:22px}
+.screen-card{background:white;border:1px solid var(--line);border-radius:24px;padding:20px;box-shadow:0 16px 44px rgba(7,39,92,.06)}.screen-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:14px}.screen-head div{display:flex;align-items:center;gap:12px}.num{display:inline-grid;place-items:center;min-width:52px;height:36px;padding:0 10px;background:#eaf3ff;color:var(--blue);border:1px solid #cde0ff;border-radius:999px;font-weight:900}h3{font-size:23px;margin:0}.open-img{text-decoration:none;border:1px solid #cfe0ff;border-radius:12px;padding:9px 12px;color:var(--blue);font-weight:900;background:#fff}.screen-card p{color:#4b5c78;line-height:1.75;margin:0 0 16px;font-weight:650}.shot{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#f7faff}.shot img{display:block;width:100%;height:auto}
+.relation{background:white;border:1px solid var(--line);border-radius:22px;padding:22px;margin-bottom:24px}.relation h2{padding:0;margin:0 0 12px}.relation-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.relation-grid div{background:#f7faff;border:1px solid var(--line);border-radius:14px;padding:14px;line-height:1.5}.relation-grid b{display:block;color:var(--blue);font-size:18px}
+footer{text-align:center;color:#6b7a95;padding:32px}
+@media(max-width:900px){.hero-card,.layout{grid-template-columns:1fr}aside{position:relative;top:auto}.stats,.relation-grid{grid-template-columns:1fr}h1{font-size:30px}.top nav{display:none}}
+</style>
+</head>
+<body>
+<header><div class="top"><div class="logo"><div class="mark">W</div><div>WILLTEC<br><small>TOKUTEI PLATFORM</small></div></div><nav><a href="#sec-overview">全体概要</a><a href="#sec-jobs">3. 求人管理</a><a href="#sec-cands">4. 候補者管理</a><a href="#sec-rec">5. 推薦管理</a><a href="#sec-interview">6. 面接管理</a><a href="#sec-onboard">7. 入社手続き管理</a><a href="#sec-billing">8. 請求管理</a><a href="#sec-guide">9. ご利用の流れ</a><a href="#sec-support">10. サポート</a></nav></div></header>
+<main>
+  <div class="hero">
+    <div class="hero-card">
+      <div><span class="badge">MVP画面フロー資料 / 1〜10</span><h1>登録支援機関向け<br>画面遷移・業務ロジック整理</h1><p class="lead">ホームから登録、求人・候補者・推薦・面接・入社手続き・請求管理、利用ガイド、サポートまで、MVPで想定する主要画面と業務のつながりを整理した確認用HTMLです。</p><div class="flowline"><a href="#sec-overview">1-2<br>開始</a><a href="#sec-jobs">3<br>求人</a><a href="#sec-cands">4<br>候補者</a><a href="#sec-rec">5<br>推薦</a><a href="#sec-interview">6<br>面接</a><a href="#sec-onboard">7<br>入社</a><a href="#sec-billing">8<br>請求</a><a href="#sec-guide">9-10<br>案内</a></div></div>
+      <div class="stats"><div class="stat"><span>求人管理</span><strong>6</strong><small>一覧・詳細・作成・他社求人推薦</small></div><div class="stat"><span>候補者管理</span><strong>6</strong><small>自社候補者・匿名検索・Scout</small></div><div class="stat"><span>推薦 / 面接</span><strong>6</strong><small>自社/他社求人の推薦と面接</small></div><div class="stat"><span>入社 / 請求</span><strong>13</strong><small>入社手続き・請求・返金・実績</small></div></div>
+    </div>
+  </div>
+  <div class="layout">
+    <aside><h3>画面一覧</h3><a href="#sec-overview">全体概要</a><a href="#sec-jobs">3. 求人管理</a><a href="#sec-cands">4. 候補者管理</a><a href="#sec-rec">5. 推薦管理</a><a href="#sec-interview">6. 面接管理</a><a href="#sec-onboard">7. 入社手続き管理</a><a href="#sec-billing">8. 請求管理</a><a href="#sec-guide">9. ご利用の流れ</a><a href="#sec-support">10. サポート</a><div class="quick"><button data-target="screen-1"><b>1</b> ホーム</button><button data-target="screen-2"><b>2</b> 新規登録</button><button data-target="screen-3.1"><b>3.1</b> 自社求人一覧</button><button data-target="screen-3.2"><b>3.2</b> 自社求人詳細</button><button data-target="screen-3.3"><b>3.3</b> 求人作成</button><button data-target="screen-3.4"><b>3.4</b> 他社求人検索・推薦</button><button data-target="screen-3.5"><b>3.5</b> 他社求人詳細</button><button data-target="screen-3.6"><b>3.6</b> 他社求人で自社候補者を推薦</button><button data-target="screen-4.1"><b>4.1</b> 自社候補者一覧</button><button data-target="screen-4.2"><b>4.2</b> 自社候補者詳細</button><button data-target="screen-4.3"><b>4.3</b> 候補者作成</button><button data-target="screen-4.4"><b>4.4</b> 候補者検索（匿名）</button><button data-target="screen-4.5"><b>4.5</b> 候補者詳細（匿名）</button><button data-target="screen-4.6"><b>4.6</b> 候補者とマッチング / Scout</button><button data-target="screen-5.1"><b>5.1</b> 自社求人への推薦管理</button><button data-target="screen-5.2"><b>5.2</b> 自社求人への推薦詳細</button><button data-target="screen-5.3"><b>5.3</b> 他社求人への推薦管理</button><button data-target="screen-5.4"><b>5.4</b> 他社求人への推薦詳細</button><button data-target="screen-6.1"><b>6.1</b> 面接管理</button><button data-target="screen-6.2"><b>6.2</b> 面接を新規作成</button><button data-target="screen-7.1"><b>7.1</b> 入社候補者一覧</button><button data-target="screen-7.2"><b>7.2</b> 入社候補者詳細</button><button data-target="screen-7.2.1"><b>7.2.1</b> 必要書類の提出依頼</button><button data-target="screen-7.2.2"><b>7.2.2</b> 入管申請受付票取得完了報告（請求）</button><button data-target="screen-7.2.3"><b>7.2.3</b> 入社報告</button><button data-target="screen-8.1"><b>8.1</b> 請求書発行・送付</button><button data-target="screen-8.1.1"><b>8.1.1</b> 請求書を新規作成</button><button data-target="screen-8.2"><b>8.2</b> 請求書受取・支払</button><button data-target="screen-8.2.1"><b>8.2.1</b> 新しく支払う</button><button data-target="screen-8.3.1"><b>8.3.1</b> 返金管理：自社→他社</button><button data-target="screen-8.3.2"><b>8.3.2</b> 返金申請 popup</button><button data-target="screen-8.3.3"><b>8.3.3</b> 返金管理：他社→自社</button><button data-target="screen-8.3.4"><b>8.3.4</b> 返金要求への対応 popup</button><button data-target="screen-8.4"><b>8.4</b> 入出金実績</button><button data-target="screen-9"><b>9</b> ご利用の流れ</button><button data-target="screen-10"><b>10</b> サポート</button></div></aside>
+    <div>
+      <div class="relation"><h2>全体業務フロー</h2><div class="relation-grid"><div><b>① 登録</b>企業登録後、各機能を利用開始</div><div><b>② 求人・候補者</b>自社求人作成 / 候補者登録・検索</div><div><b>③ 推薦・面接</b>自社求人・他社求人の推薦と面接調整</div><div><b>④ 入社手続き</b>内定後の書類、申請、Todo、入社報告</div><div><b>⑤ 請求管理</b>請求書発行・支払・返金・入出金実績</div></div></div>
+      <section id="sec-overview" class="section"><h2>全体概要</h2><div class="grid">
+      <article id="screen-1" class="screen-card" data-no="1">
+        <div class="screen-head">
+          <div><span class="num">1</span><h3>ホーム</h3></div>
+          <a class="open-img" href="willtec_flow_assets/1__.webp" target="_blank">画像を開く</a>
+        </div>
+        <p>サービス概要と新規登録への入口。登録支援機関が求人・候補者・推薦・面接・入社手続き・請求管理まで一元管理できる全体像を提示します。</p>
+        <div class="shot"><img src="willtec_flow_assets/1__.webp" alt="1 ホーム" loading="lazy"></div>
+      </article>
+      <article id="screen-2" class="screen-card" data-no="2">
+        <div class="screen-head">
+          <div><span class="num">2</span><h3>新規登録</h3></div>
+          <a class="open-img" href="willtec_flow_assets/2__.webp" target="_blank">画像を開く</a>
+        </div>
+        <p>利用開始前にアカウント情報・企業情報を登録する画面です。登録後、求人作成や候補者管理など各機能を利用できます。</p>
+        <div class="shot"><img src="willtec_flow_assets/2__.webp" alt="2 新規登録" loading="lazy"></div>
+      </article></div></section><section id="sec-jobs" class="section"><h2>3. 求人管理</h2><div class="grid">
+      <article id="screen-3.1" class="screen-card" data-no="3.1">
+        <div class="screen-head">
+          <div><span class="num">3.1</span><h3>自社求人一覧</h3></div>
+          <a class="open-img" href="willtec_flow_assets/3.1__.webp" target="_blank">画像を開く</a>
+        </div>
+        <p>自社で作成した求人を一覧管理します。公開中・募集停止中・採用決定・下書きなどの状態を確認できます。</p>
+        <div class="shot"><img src="willtec_flow_assets/3.1__.webp" alt="3.1 自社求人一覧" loading="lazy"></div>
+      </article>
+      <article id="screen-3.2" class="screen-card" data-no="3.2">
+        <div class="screen-head">
+          <div><span class="num">3.2</span><h3>自社求人詳細</h3></div>
+          <a class="open-img" href="willtec_flow_assets/3.2__.webp" target="_blank">画像を開く</a>
+        </div>
+        <p>求人条件、応募・推薦数、活動履歴、候補者一覧を確認します。求人編集・複製・非公開化へ進めます。</p>
+        <div class="shot"><img src="willtec_flow_assets/3.2__.webp" alt="3.2 自社求人詳細" loading="lazy"></div>
+      </article>
+      <article id="screen-3.3" class="screen-card" data-no="3.3">
+        <div class="screen-head">
+          <div><span class="num">3.3</span><h3>求人作成</h3></div>
+          <a class="open-img" href="willtec_flow_assets/3.3__.webp" target="_blank">画像を開く</a>
+        </div>
+        <p>求人情報を入力し、画像・勤務条件・応募条件を設定します。公開前にプレビューで確認できます。</p>
+        <div class="shot"><img src="willtec_flow_assets/3.3__.webp" alt="3.3 求人作成" loading="lazy"></div>
+      </article>
+      <article id="screen-3.4" class="screen-card" data-no="3.4">
+        <div class="screen-head">
+          <div><span class="num">3.4</span><h3>他社求人検索・推薦</h3></div>
+          <a class="open-img" href="willtec_flow_assets/3.4__.webp" target="_blank">画像を開く</a>
+        </div>
+        <p>他の登録支援機関が掲載している求人を検索し、自社候補者を推薦できる求人を探します。</p>
+        <div class="shot"><img src="willtec_flow_assets/3.4__.webp" alt="3.4 他社求人検索・推薦" loading="lazy"></div>
+      </article>
+      <article id="screen-3.5" class="screen-card" data-no="3.5">
+        <div class="screen-head">
+          <div><span class="num">3.5</span><h3>他社求人詳細</h3></div>
+          <a class="open-img" href="willtec_flow_assets/3.5__.webp" target="_blank">画像を開く</a>
+        </div>
+        <p>他社求人の詳細条件、掲載機関情報、応募・選考フローを確認します。条件が合えば自社候補者の推薦へ進みます。</p>
+        <div class="shot"><img src="willtec_flow_assets/3.5__.webp" alt="3.5 他社求人詳細" loading="lazy"></div>
+      </article>
+      <article id="screen-3.6" class="screen-card" data-no="3.6">
+        <div class="screen-head">
+          <div><span class="num">3.6</span><h3>他社求人で自社候補者を推薦</h3></div>
+          <a class="open-img" href="willtec_flow_assets/3.6__.webp" target="_blank">画像を開く</a>
+        </div>
+        <p>他社求人に対して、自社候補者を選択し、推薦メッセージ・推薦理由・添付資料を送信します。</p>
+        <div class="shot"><img src="willtec_flow_assets/3.6__.webp" alt="3.6 他社求人で自社候補者を推薦" loading="lazy"></div>
+      </article></div></section><section id="sec-cands" class="section"><h2>4. 候補者管理</h2><div class="grid">
+      <article id="screen-4.1" class="screen-card" data-no="4.1">
+        <div class="screen-head">
+          <div><span class="num">4.1</span><h3>自社候補者一覧</h3></div>
+          <a class="open-img" href="willtec_flow_assets/4.1__.webp" target="_blank">画像を開く</a>
+        </div>
+        <p>自社が保有・管理する候補者を一覧化します。ステータス、在留資格、日本語レベルなどで絞り込みできます。</p>
+        <div class="shot"><img src="willtec_flow_assets/4.1__.webp" alt="4.1 自社候補者一覧" loading="lazy"></div>
+      </article>
+      <article id="screen-4.2" class="screen-card" data-no="4.2">
+        <div class="screen-head">
+          <div><span class="num">4.2</span><h3>自社候補者詳細</h3></div>
+          <a class="open-img" href="willtec_flow_assets/4.2__.webp" target="_blank">画像を開く</a>
+        </div>
+        <p>自社候補者の基本情報、書類、面接・選考履歴、推薦履歴を確認します。編集や面接設定へ進めます。</p>
+        <div class="shot"><img src="willtec_flow_assets/4.2__.webp" alt="4.2 自社候補者詳細" loading="lazy"></div>
+      </article>
+      <article id="screen-4.3" class="screen-card" data-no="4.3">
+        <div class="screen-head">
+          <div><span class="num">4.3</span><h3>候補者作成</h3></div>
+          <a class="open-img" href="willtec_flow_assets/4.3__.webp" target="_blank">画像を開く</a>
+        </div>
+        <p>新しい候補者を登録します。基本情報、在留・ビザ情報、職歴・スキル、日本語学習歴を段階的に入力します。</p>
+        <div class="shot"><img src="willtec_flow_assets/4.3__.webp" alt="4.3 候補者作成" loading="lazy"></div>
+      </article>
+      <article id="screen-4.4" class="screen-card" data-no="4.4">
+        <div class="screen-head">
+          <div><span class="num">4.4</span><h3>候補者検索（匿名）</h3></div>
+          <a class="open-img" href="willtec_flow_assets/4.4__.webp" target="_blank">画像を開く</a>
+        </div>
+        <p>他社やデータベース上の候補者を匿名で検索します。個人情報は非表示のまま条件に合う候補者を探せます。</p>
+        <div class="shot"><img src="willtec_flow_assets/4.4__.webp" alt="4.4 候補者検索（匿名）" loading="lazy"></div>
+      </article>
+      <article id="screen-4.5" class="screen-card" data-no="4.5">
+        <div class="screen-head">
+          <div><span class="num">4.5</span><h3>候補者詳細（匿名）</h3></div>
+          <a class="open-img" href="willtec_flow_assets/4.5__.webp" target="_blank">画像を開く</a>
+        </div>
+        <p>匿名候補者の概要・スキル・マッチ度を確認します。個人を特定できる情報は非表示です。</p>
+        <div class="shot"><img src="willtec_flow_assets/4.5__.webp" alt="4.5 候補者詳細（匿名）" loading="lazy"></div>
+      </article>
+      <article id="screen-4.6" class="screen-card" data-no="4.6">
+        <div class="screen-head">
+          <div><span class="num">4.6</span><h3>候補者とマッチング / Scout</h3></div>
+          <a class="open-img" href="willtec_flow_assets/4.6__Scout.webp" target="_blank">画像を開く</a>
+        </div>
+        <p>候補者にスカウトメッセージを送り、面談・選考へ進めます。候補者の出所タグで直接登録・他社紹介などを判別できます。</p>
+        <div class="shot"><img src="willtec_flow_assets/4.6__Scout.webp" alt="4.6 候補者とマッチング / Scout" loading="lazy"></div>
+      </article></div></section><section id="sec-rec" class="section"><h2>5. 推薦管理</h2><div class="grid">
+      <article id="screen-5.1" class="screen-card" data-no="5.1">
+        <div class="screen-head">
+          <div><span class="num">5.1</span><h3>自社求人への推薦管理</h3></div>
+          <a class="open-img" href="willtec_flow_assets/5.1__.webp" target="_blank">画像を開く</a>
+        </div>
+        <p>自社求人に推薦された候補者の一覧と選考状況を管理します。面接調整中・内定・不採用などを確認できます。</p>
+        <div class="shot"><img src="willtec_flow_assets/5.1__.webp" alt="5.1 自社求人への推薦管理" loading="lazy"></div>
+      </article>
+      <article id="screen-5.2" class="screen-card" data-no="5.2">
+        <div class="screen-head">
+          <div><span class="num">5.2</span><h3>自社求人への推薦詳細</h3></div>
+          <a class="open-img" href="willtec_flow_assets/5.2__.webp" target="_blank">画像を開く</a>
+        </div>
+        <p>推薦された候補者の情報、選考ステータス、面接日程、メッセージ履歴を詳細確認します。</p>
+        <div class="shot"><img src="willtec_flow_assets/5.2__.webp" alt="5.2 自社求人への推薦詳細" loading="lazy"></div>
+      </article>
+      <article id="screen-5.3" class="screen-card" data-no="5.3">
+        <div class="screen-head">
+          <div><span class="num">5.3</span><h3>他社求人への推薦管理</h3></div>
+          <a class="open-img" href="willtec_flow_assets/5.3__.webp" target="_blank">画像を開く</a>
+        </div>
+        <p>自社候補者を他社求人へ推薦した履歴と進捗を管理します。自社から外部へ出した推薦案件を追跡します。</p>
+        <div class="shot"><img src="willtec_flow_assets/5.3__.webp" alt="5.3 他社求人への推薦管理" loading="lazy"></div>
+      </article>
+      <article id="screen-5.4" class="screen-card" data-no="5.4">
+        <div class="screen-head">
+          <div><span class="num">5.4</span><h3>他社求人への推薦詳細</h3></div>
+          <a class="open-img" href="willtec_flow_assets/5.4__.webp" target="_blank">画像を開く</a>
+        </div>
+        <p>他社求人へ推薦した候補者の詳細、追加資料、メッセージ履歴、面接情報を確認・更新できます。</p>
+        <div class="shot"><img src="willtec_flow_assets/5.4__.webp" alt="5.4 他社求人への推薦詳細" loading="lazy"></div>
+      </article></div></section><section id="sec-interview" class="section"><h2>6. 面接管理</h2><div class="grid">
+      <article id="screen-6.1" class="screen-card" data-no="6.1">
+        <div class="screen-head">
+          <div><span class="num">6.1</span><h3>面接管理</h3></div>
+          <a class="open-img" href="willtec_flow_assets/6.1__.webp" target="_blank">画像を開く</a>
+        </div>
+        <p>カレンダーと一覧で面接予定を確認します。青は自社求人、橙は他社求人への推薦候補者など、タグで種別を判別できます。</p>
+        <div class="shot"><img src="willtec_flow_assets/6.1__.webp" alt="6.1 面接管理" loading="lazy"></div>
+      </article>
+      <article id="screen-6.2" class="screen-card" data-no="6.2">
+        <div class="screen-head">
+          <div><span class="num">6.2</span><h3>面接を新規作成</h3></div>
+          <a class="open-img" href="willtec_flow_assets/6.2__.webp" target="_blank">画像を開く</a>
+        </div>
+        <p>候補者・求人・面接ステップ・日時・形式（Zoom / Google Meet / 対面など）を設定して面接予定を作成します。</p>
+        <div class="shot"><img src="willtec_flow_assets/6.2__.webp" alt="6.2 面接を新規作成" loading="lazy"></div>
+      </article></div></section><section id="sec-onboard" class="section"><h2>7. 入社手続き管理</h2><div class="grid">
+      <article id="screen-7.1" class="screen-card" data-no="7.1">
+        <div class="screen-head">
+          <div><span class="num">7.1</span><h3>入社候補者一覧</h3></div>
+          <a class="open-img" href="willtec_flow_assets/7.1__.webp" target="_blank">画像を開く</a>
+        </div>
+        <p>内定後の候補者を一覧で管理します。書類収集中、入管申請中、COE待ち、VISA申請中、入社準備中などの進捗を確認します。</p>
+        <div class="shot"><img src="willtec_flow_assets/7.1__.webp" alt="7.1 入社候補者一覧" loading="lazy"></div>
+      </article>
+      <article id="screen-7.2" class="screen-card" data-no="7.2">
+        <div class="screen-head">
+          <div><span class="num">7.2</span><h3>入社候補者詳細</h3></div>
+          <a class="open-img" href="willtec_flow_assets/7.2__.webp" target="_blank">画像を開く</a>
+        </div>
+        <p>入社手続きの進捗、提出書類、申請状況、Todo、メモを1画面で管理します。</p>
+        <div class="shot"><img src="willtec_flow_assets/7.2__.webp" alt="7.2 入社候補者詳細" loading="lazy"></div>
+      </article>
+      <article id="screen-7.2.1" class="screen-card" data-no="7.2.1">
+        <div class="screen-head">
+          <div><span class="num">7.2.1</span><h3>必要書類の提出依頼</h3></div>
+          <a class="open-img" href="willtec_flow_assets/7.2.1__.webp" target="_blank">画像を開く</a>
+        </div>
+        <p>候補者本人または推薦元・受入企業へ必要書類の提出を依頼するメッセージを送信します。</p>
+        <div class="shot"><img src="willtec_flow_assets/7.2.1__.webp" alt="7.2.1 必要書類の提出依頼" loading="lazy"></div>
+      </article>
+      <article id="screen-7.2.2" class="screen-card" data-no="7.2.2">
+        <div class="screen-head">
+          <div><span class="num">7.2.2</span><h3>入管申請受付票取得完了報告（請求）</h3></div>
+          <a class="open-img" href="willtec_flow_assets/7.2.2__.webp" target="_blank">画像を開く</a>
+        </div>
+        <p>入管申請受付票を取得したタイミングで完了報告を行い、請求情報を作成・送信します。</p>
+        <div class="shot"><img src="willtec_flow_assets/7.2.2__.webp" alt="7.2.2 入管申請受付票取得完了報告（請求）" loading="lazy"></div>
+      </article>
+      <article id="screen-7.2.3" class="screen-card" data-no="7.2.3">
+        <div class="screen-head">
+          <div><span class="num">7.2.3</span><h3>入社報告</h3></div>
+          <a class="open-img" href="willtec_flow_assets/7.2.3__.webp" target="_blank">画像を開く</a>
+        </div>
+        <p>候補者の入社完了後、入社日・勤務開始日・雇用条件・確認チェックを入力し、入社実績として登録します。</p>
+        <div class="shot"><img src="willtec_flow_assets/7.2.3__.webp" alt="7.2.3 入社報告" loading="lazy"></div>
+      </article></div></section><section id="sec-billing" class="section"><h2>8. 請求管理</h2><div class="grid">
+      <article id="screen-8.1" class="screen-card" data-no="8.1">
+        <div class="screen-head">
+          <div><span class="num">8.1</span><h3>請求書発行・送付</h3></div>
+          <a class="open-img" href="willtec_flow_assets/8.1__.webp" target="_blank">画像を開く</a>
+        </div>
+        <p>自社が他社へ紹介手数料等を請求する画面です。発行済み・入金待ち・未入金を管理します。</p>
+        <div class="shot"><img src="willtec_flow_assets/8.1__.webp" alt="8.1 請求書発行・送付" loading="lazy"></div>
+      </article>
+      <article id="screen-8.1.1" class="screen-card" data-no="8.1.1">
+        <div class="screen-head">
+          <div><span class="num">8.1.1</span><h3>請求書を新規作成</h3></div>
+          <a class="open-img" href="willtec_flow_assets/8.1.1__.webp" target="_blank">画像を開く</a>
+        </div>
+        <p>請求先、対象求人・候補者、紹介手数料、税、支払期限、メッセージを入力し、請求書を作成します。</p>
+        <div class="shot"><img src="willtec_flow_assets/8.1.1__.webp" alt="8.1.1 請求書を新規作成" loading="lazy"></div>
+      </article>
+      <article id="screen-8.2" class="screen-card" data-no="8.2">
+        <div class="screen-head">
+          <div><span class="num">8.2</span><h3>請求書受取・支払</h3></div>
+          <a class="open-img" href="willtec_flow_assets/8.2__.webp" target="_blank">画像を開く</a>
+        </div>
+        <p>他社またはプラットフォームから受け取った請求書を確認し、支払いを行う画面です。</p>
+        <div class="shot"><img src="willtec_flow_assets/8.2__.webp" alt="8.2 請求書受取・支払" loading="lazy"></div>
+      </article>
+      <article id="screen-8.2.1" class="screen-card" data-no="8.2.1">
+        <div class="screen-head">
+          <div><span class="num">8.2.1</span><h3>新しく支払う</h3></div>
+          <a class="open-img" href="willtec_flow_assets/8.2.1__.webp" target="_blank">画像を開く</a>
+        </div>
+        <p>対象請求書を選択し、支払予定日、支払方法、口座、添付ファイルを登録して支払い処理へ進みます。</p>
+        <div class="shot"><img src="willtec_flow_assets/8.2.1__.webp" alt="8.2.1 新しく支払う" loading="lazy"></div>
+      </article>
+      <article id="screen-8.3.1" class="screen-card" data-no="8.3.1">
+        <div class="screen-head">
+          <div><span class="num">8.3.1</span><h3>返金管理：自社→他社</h3></div>
+          <a class="open-img" href="willtec_flow_assets/8.3.1__.webp" target="_blank">画像を開く</a>
+        </div>
+        <p>自社から他社へ返金を申請するケースを管理します。申請中・承認待ち・返金済みなどを確認できます。</p>
+        <div class="shot"><img src="willtec_flow_assets/8.3.1__.webp" alt="8.3.1 返金管理：自社→他社" loading="lazy"></div>
+      </article>
+      <article id="screen-8.3.2" class="screen-card" data-no="8.3.2">
+        <div class="screen-head">
+          <div><span class="num">8.3.2</span><h3>返金申請 popup</h3></div>
+          <a class="open-img" href="willtec_flow_assets/8.3.2__popup.webp" target="_blank">画像を開く</a>
+        </div>
+        <p>返金理由、返金希望金額、希望日、証憑ファイルを入力し、他社へ返金申請を送信します。</p>
+        <div class="shot"><img src="willtec_flow_assets/8.3.2__popup.webp" alt="8.3.2 返金申請 popup" loading="lazy"></div>
+      </article>
+      <article id="screen-8.3.3" class="screen-card" data-no="8.3.3">
+        <div class="screen-head">
+          <div><span class="num">8.3.3</span><h3>返金管理：他社→自社</h3></div>
+          <a class="open-img" href="willtec_flow_assets/8.3.3__.webp" target="_blank">画像を開く</a>
+        </div>
+        <p>他社から自社へ届いた返金要求への対応を管理します。承認・一部返金・却下などを判断します。</p>
+        <div class="shot"><img src="willtec_flow_assets/8.3.3__.webp" alt="8.3.3 返金管理：他社→自社" loading="lazy"></div>
+      </article>
+      <article id="screen-8.3.4" class="screen-card" data-no="8.3.4">
+        <div class="screen-head">
+          <div><span class="num">8.3.4</span><h3>返金要求への対応 popup</h3></div>
+          <a class="open-img" href="willtec_flow_assets/8.3.4__popup.webp" target="_blank">画像を開く</a>
+        </div>
+        <p>他社からの返金要求内容を確認し、承認・一部返金・却下・保留などの対応内容を送信します。</p>
+        <div class="shot"><img src="willtec_flow_assets/8.3.4__popup.webp" alt="8.3.4 返金要求への対応 popup" loading="lazy"></div>
+      </article>
+      <article id="screen-8.4" class="screen-card" data-no="8.4">
+        <div class="screen-head">
+          <div><span class="num">8.4</span><h3>入出金実績</h3></div>
+          <a class="open-img" href="willtec_flow_assets/8.4__.webp" target="_blank">画像を開く</a>
+        </div>
+        <p>請求書発行、支払、返金に関する全ての入出金履歴を集計・確認します。月次の入金・支払・返金・収支を把握できます。</p>
+        <div class="shot"><img src="willtec_flow_assets/8.4__.webp" alt="8.4 入出金実績" loading="lazy"></div>
+      </article></div></section><section id="sec-guide" class="section"><h2>9. ご利用の流れ</h2><div class="grid">
+      <article id="screen-9" class="screen-card" data-no="9">
+        <div class="screen-head">
+          <div><span class="num">9</span><h3>ご利用の流れ</h3></div>
+          <a class="open-img" href="willtec_flow_assets/9__.webp" target="_blank">画像を開く</a>
+        </div>
+        <p>登録支援機関としての自社フローと、受け入れ企業としての他社フローを整理し、利用手順を説明します。</p>
+        <div class="shot"><img src="willtec_flow_assets/9__.webp" alt="9 ご利用の流れ" loading="lazy"></div>
+      </article></div></section><section id="sec-support" class="section"><h2>10. サポート</h2><div class="grid">
+      <article id="screen-10" class="screen-card" data-no="10">
+        <div class="screen-head">
+          <div><span class="num">10</span><h3>サポート</h3></div>
+          <a class="open-img" href="willtec_flow_assets/10__.webp" target="_blank">画像を開く</a>
+        </div>
+        <p>FAQ、ガイド、問い合わせフォーム、メンテナンス情報など、利用中のサポート窓口をまとめます。</p>
+        <div class="shot"><img src="willtec_flow_assets/10__.webp" alt="10 サポート" loading="lazy"></div>
+      </article></div></section>
+    </div>
+  </div>
+</main>
+<footer>© WILLTEC TOKUTEI PLATFORM MVP Flow Document</footer>
+<script>
+document.querySelectorAll('.quick button').forEach(btn=>btn.addEventListener('click',()=>{document.getElementById(btn.dataset.target)?.scrollIntoView({behavior:'smooth',block:'start'})}));
+</script>
+</body></html>
